@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Calculadora Elétrica</title>
+
+    <style>
+
+    	.conteudo{
+    		width: 70%;
+    		background-color: skyblue;
+    		margin: auto;
+    		padding: 20px;
+    	}
+    	
+    </style>
+
+</head>
+
+<body onload="setOpcao()">
+	<div class="container">
+		
+		<div class="conteudo mt-5">
+		<form>
+
+			<div class="form-group mb-4">
+			    <select class="form-control" id="combobox" onchange="verificaSelecionado(this)">
+			    	<option value="Selecione uma opção">Selecione uma opção</option>
+				    <option>Corrente</option>
+				    <option>Potência</option>
+				    <option>Resistência</option>
+				    <option>Tensão</option>
+			    </select>
+			</div>
+
+		    <div class="form-group text-center">
+		    	<input type="number" class="form-control" id="num1" placeholder="Valor 1" min="0" step="0.01">
+
+			  	<div class="form-check form-check-inline mt-2">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio1" value="">
+					<label id="label1" class="form-check-label" for="radio1"></label>
+				</div>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio2" value="">
+					<label id="label2" class="form-check-label" for="radio2"></label>
+				</div>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio3" value="">
+					<label id="label3" class="form-check-label" for="radio3"></label>
+				</div>
+			</div>
+
+
+		  	<div class="form-group text-center">
+		    	<input type="number" class="form-control" id="num2" placeholder="Valor 2" min="0" step="0.01">
+
+				<div class="form-check form-check-inline mt-2">
+		    		<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio4" value="">
+		    		<label id="label4" class="form-check-label" for="radio4"></label>
+				</div>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio5" value="">
+					<label id="label5" class="form-check-label" for="radio5"></label>
+				</div>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio6" value="">
+					<label id="label6" class="form-check-label" for="radio6"></label>
+				</div>
+			</div>
+
+		   <button type="button" class="btn btn-primary form-control mb-2 mt-2" onclick="calcular()">Calcular</button>
+
+		</form>
+
+
+		<div id="resultado" class="text-center mt-5">
+			
+		</div>
+
+		</div>
+
+	</div>
+    
+</body>
+</html>
+
+
+<script>
+
+	const setOpcao = () => {
+		document.getElementById('num1').value = ''
+		document.getElementById('num2').value = ''
+
+		const select = document.getElementById('combobox')
+		const opcoes = select.options
+
+		for (let opt, i = 0; opt = opcoes[i]; i++) {
+			if (opt.value === 'Selecione uma opção') {
+				opcoes.selectedIndex = i
+				break
+			}
+		}
+	}
+	
+	const verificaSelecionado = (valor) => {
+		const selecionado = valor.options[valor.selectedIndex].text
+
+		const label1 = document.getElementById('label1')
+		const label2 = document.getElementById('label2')
+		const label3 = document.getElementById('label3')
+		const label4 = document.getElementById('label4')
+		const label5 = document.getElementById('label5')
+		const label6 = document.getElementById('label6')
+
+		if(selecionado === 'Corrente'){
+			label1.textContent = 'Potência'
+			label2.textContent = 'Resistência'
+			label3.textContent = 'Tensão'
+			label4.textContent = 'Potência'
+			label5.textContent = 'Resistência'
+			label6.textContent = 'Tensão'
+		}
+		else if(selecionado === 'Potência'){
+			label1.textContent = 'Corrente'
+			label2.textContent = 'Resistência'
+			label3.textContent = 'Tensão'
+			label4.textContent = 'Corrente'
+			label5.textContent = 'Resistência'
+			label6.textContent = 'Tensão'
+		}
+		else if(selecionado === 'Resistência'){
+			label1.textContent = 'Potência'
+			label2.textContent = 'Corrente'
+			label3.textContent = 'Tensão'
+			label4.textContent = 'Potência'
+			label5.textContent = 'Corrente'
+			label6.textContent = 'Tensão'
+		}
+		else if(selecionado === 'Tensão'){
+			label1.textContent = 'Potência'
+			label2.textContent = 'Resistência'
+			label3.textContent = 'Corrente'
+			label4.textContent = 'Potência'
+			label5.textContent = 'Resistência'
+			label6.textContent = 'Corrente'
+		}
+	}
+
+
+
+	const calcular = () => {
+		const select = document.getElementById('combobox')
+		const selecionado = select.options[select.selectedIndex].text
+		const resultado = document.getElementById('resultado')
+
+		const numero1 = document.getElementById('num1').value
+		const numero2 = document.getElementById('num2').value
+
+		let total = 0
+
+		if(selecionado === 'Corrente'){
+			if (radio1.checked) {
+				if(radio4.checked){//potencia selecionada
+					alert('Opção inválida!')
+				}
+				else if(radio5.checked){
+					total = (Math.sqrt(numero1/numero2)).toFixed(4) + ' A'
+				}
+				else if(radio6.checked){
+					total = (numero1/numero2).toFixed(4) + ' A'
+				}
+			}
+
+			else if (radio2.checked) {//resistencia selecionada
+				if(radio4.checked){
+					total = (Math.sqrt(numero2/numero1)).toFixed(4) + ' A'
+				}
+				else if(radio5.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio6.checked){
+					total = (numero2/numero1).toFixed(4) + ' A'
+				}
+			}
+
+			else if (radio3.checked) {//tensao selecionada
+				if(radio4.checked){
+					total = (numero2/numero1).toFixed(4) + ' A'
+				}
+				else if(radio5.checked){
+					total = (numero1/numero2).toFixed(4) + ' A'
+				}
+				else if(radio6.checked){
+					alert('Opção inválida!')
+				}
+			}
+		}
+
+
+
+
+
+
+
+		else if(selecionado === 'Potência'){
+			if (radio1.checked) {
+				if(radio4.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio5.checked){
+					total = (numero2*Math.pow(numero1,2)).toFixed(4) + ' W'
+				}
+				else if(radio6.checked){
+					total = (numero1*numero2).toFixed(4) + ' W'
+				}
+			}
+
+			else if (radio2.checked) {
+				if(radio4.checked){
+					total = (numero1*Math.pow(numero2,2)).toFixed(4) + ' W'
+				}
+				else if(radio5.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio6.checked){
+					total = (Math.pow(numero2,2)/numero1).toFixed(4) + ' W'
+				}
+			}
+
+			else if (radio3.checked) {
+				if(radio4.checked){
+					total = (numero1*numero2).toFixed(4) + ' W'
+				}
+				else if(radio5.checked){
+					total = (Math.pow(numero1,2)/numero2).toFixed(4) + ' W'
+				}
+				else if(radio6.checked){
+					alert('Opção inválida!')
+				}
+			}
+		}
+
+
+
+
+
+
+		else if(selecionado === 'Resistência'){
+			if (radio1.checked) {
+				if(radio4.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio5.checked){
+					total = (numero1/Math.pow(numero2,2)).toFixed(4) + ' Ω'
+				}
+				else if(radio6.checked){
+					total = (Math.pow(numero2,2)/numero1).toFixed(4) + ' Ω'
+				}
+			}
+
+			else if (radio2.checked) {
+				if(radio4.checked){
+					total = (numero2/Math.pow(numero1,2)).toFixed(4) + ' Ω'
+				}
+				else if(radio5.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio6.checked){
+					total = (numero2/numero1).toFixed(4) + ' Ω'
+				}
+			}
+
+			else if (radio3.checked) {
+				if(radio4.checked){
+					total = (Math.pow(numero1,2)/numero2).toFixed(4) + ' Ω'
+				}
+				else if(radio5.checked){
+					total = (numero1/numero2).toFixed(4) + ' Ω'
+				}
+				else if(radio6.checked){
+					alert('Opção inválida!')
+				}
+			}
+		}
+
+
+
+
+
+
+		else if(selecionado === 'Tensão'){
+			if (radio1.checked) {
+				if(radio4.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio5.checked){
+					total = (Math.sqrt(numero1*numero2)).toFixed(4) + ' V'
+				}
+				else if(radio6.checked){
+					total = (numero1/numero2).toFixed(4) + ' V'
+				}
+			}
+
+			else if (radio2.checked) {
+				if(radio4.checked){
+					total = (Math.sqrt(numero2*numero1)).toFixed(4) + ' V'
+				}
+				else if(radio5.checked){
+					alert('Opção inválida!')
+				}
+				else if(radio6.checked){
+					total = (numero1*numero2).toFixed(4) + ' V'
+				}
+			}
+
+			else if (radio3.checked) {
+				if(radio4.checked){
+					total = (numero2/numero1).toFixed(4) + ' V'
+				}
+				else if(radio5.checked){
+					total = (numero2*numero1).toFixed(4) + ' V'
+				}
+				else if(radio6.checked){
+					alert('Opção inválida!')
+				}
+			}
+
+		}
+
+		else{
+			alert('Selecione uma opção!')
+		}
+
+
+		resultado.innerHTML = `<h1>${total}</h1>`
+
+
+	}
+
+
+</script>
