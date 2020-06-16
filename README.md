@@ -1,4 +1,4 @@
-# calceletricajs
+# Calculadora elétrica
 
 projeto acessível no link http://mateuz1234.github.io/calceletricajs
 
