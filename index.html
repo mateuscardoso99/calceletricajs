@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="Calculadora Elétrica Online. calcule potência, corrente, tensão e resistência elétrica online">
+	    <meta property="og:title" content="Calculadora Elétrica Online">
+	    <meta name="og:description" content="Calculadora Elétrica Online. calcule potência, corrente, tensão e resistência elétrica online">
+	    <meta property="og:type" content="website">
+	    <meta property="og:url" content="https://mateuscardoso99.github.io/calceletricajs">
+	    <meta property="og:locale" content="pt-br">
+	    <meta name="robots" content="all">
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	    <title>Calculadora Elétrica</title>
+	    <title>Calculadora Elétrica Online</title>
 
 	    <style>
 	    	.container{
 	    		width: 70%;
 	    		background-color: #8257E5;
 	    		margin-bottom: 2rem;
-				margin-top: 2rem;
+			margin-top: 2rem;
 	    	}
 	    	.conteudo{
 	    		padding: 2rem;
 	    	}
 	    	.labels{
 	    		display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				justify-content: center;
-				line-height: 2rem;
-				margin-bottom: 2rem;
-				color: #fff;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: center;
+			line-height: 2rem;
+			margin-bottom: 2rem;
+			color: #fff;
 	    	}
 	    	.button{
-	    		background: #04d361;
-				color: #fff;
-				border: none;
-				border-radius: 9px;
-	    	}
-	    	.button:hover{
-	    		background: #10f376;
+	    		background: #224289;
+			color: #fff;
+			border: none;
+			border-radius: 9px;
 	    	}
 	    	#resultado{
 	    		display: flex;
-				align-items: center;
-				justify-content: center;
-				color: #fff;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
 	    	}
 	    	@media (min-width: 400px){
 	    		.labels{
@@ -69,17 +73,17 @@
 			    	<div class="labels">
 					  	<div class="form-check form-check-inline mt-1">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio1" value="">
-							<label id="label1" class="form-check-label" for="radio1"></label>
+							<label id="label1" class="form-check-label text-dark" for="radio1"></label>
 						</div>
 
 						<div class="form-check form-check-inline mt-1">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio2" value="">
-							<label id="label2" class="form-check-label" for="radio2"></label>
+							<label id="label2" class="form-check-label text-dark" for="radio2"></label>
 						</div>
 
 						<div class="form-check form-check-inline mt-1">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio3" value="">
-							<label id="label3" class="form-check-label" for="radio3"></label>
+							<label id="label3" class="form-check-label text-dark" for="radio3"></label>
 						</div>
 					</div>
 				</div>
@@ -91,17 +95,17 @@
 			    	<div class="labels">
 						<div class="form-check form-check-inline mt-1">
 				    		<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio4" value="">
-				    		<label id="label4" class="form-check-label" for="radio4"></label>
+				    		<label id="label4" class="form-check-label text-dark" for="radio4"></label>
 						</div>
 
 						<div class="form-check form-check-inline mt-1">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio5" value="">
-							<label id="label5" class="form-check-label" for="radio5"></label>
+							<label id="label5" class="form-check-label text-dark" for="radio5"></label>
 						</div>
 
 						<div class="form-check form-check-inline mt-1">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="radio6" value="">
-							<label id="label6" class="form-check-label" for="radio6"></label>
+							<label id="label6" class="form-check-label text-dark" for="radio6"></label>
 						</div>
 					</div>
 				</div>
@@ -230,11 +234,6 @@
 		}
 
 
-
-
-
-
-
 		else if(selecionado === 'Potência'){
 			if (radio1.checked) {
 				if(radio4.checked){
@@ -274,10 +273,6 @@
 		}
 
 
-
-
-
-
 		else if(selecionado === 'Resistência'){
 			if (radio1.checked) {
 				if(radio4.checked){
@@ -315,10 +310,6 @@
 				}
 			}
 		}
-
-
-
-
 
 
 		else if(selecionado === 'Tensão'){
@@ -365,7 +356,7 @@
 		}
 
 
-		resultado.innerHTML = `<h1>${total}</h1>`
+		resultado.innerHTML = `<h1 style='color:#224289'>${total}</h1>`
 
 
 	}
